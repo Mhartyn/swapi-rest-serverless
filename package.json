@@ -1,0 +1,27 @@
+{
+  "name": "swapi-rest-serverless",
+  "version": "1.0.0",
+  "description": "-----\r Integración con SWAPI.",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhonrg27/swapi-rest-serverless.git"
+  },
+  "keywords": [],
+  "author": "Richard Jhon Roque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhonrg27/swapi-rest-serverless/issues"
+  },
+  "homepage": "https://github.com/jhonrg27/swapi-rest-serverless#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^7.0.0"
+  }
+}

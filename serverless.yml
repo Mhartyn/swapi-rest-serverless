@@ -1,0 +1,91 @@
+# Welcome to Serverless!
+
+service: swapi-rest-serverless
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: us-east-2
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  apiGateway:
+    shouldStartNameWithService: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:        
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: arn:aws:dynamodb:us-east-2:*:*  
+
+plugins:  
+  - serverless-offline
+  
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - 
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - 
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}    
+
+functions:
+  integrateSwapi:
+    handler: handler/integrate.integrateSwapi
+    events:
+      - http:
+          path: /integrate_swapi
+          method: get
+          cors: true
+  createData:
+    handler: handler/create.createData
+    events:
+      - http:
+          path: /create
+          method: post
+          cors: true
+  listData:
+    handler: handler/list.listData
+    events:
+      - http:
+          path: /list
+          method: get
+          cors: true
+  getData:
+    handler: handler/get.getData
+    events:
+      - http:
+          path: get_data/{id}
+          method: get
+          cors: true
+  updateData:
+    handler: handler/update.updateData
+    events:
+      - http:
+          path: update/{id}
+          method: put
+          cors: true
+  deleteData:
+    handler: handler/delete.deleteData
+    events:
+      - http:
+          path: delete/{id}
+          method: delete
+          cors: true    

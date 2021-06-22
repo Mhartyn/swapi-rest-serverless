@@ -1,0 +1,187 @@
+---
+swagger: "2.0"
+info:
+  version: "2021-06-22T03:34:19Z"
+  title: " NodeJS REST API Serverless con AWS."
+  description: "Implementación de API REST con integración a SWAPI - The Star Wars API. Se divide en 2 procesos; Primero, es la integracion con SWAPI, y el segundo es un proceso CRUD (Create, Read, Update, Delete)."  
+host: "ia34968003.execute-api.us-east-2.amazonaws.com"
+basePath: "/dev"
+schemes:
+- "https"
+paths:
+  /integrate_swapi:
+    get:
+      tags:
+      - "Integración con SWAPI"    
+      description: "Integración con SWAPI con el Endpoint https://swapi.py4e.com/api/films. Mostrara un listado de películas con los atributos transformados al español."      
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /create:
+    post:
+      tags:
+      - "Proceso CRUD"      
+      description: "Creara un nuevo registro. Se Ingresara los valores en cada atributo, finalmente se guardaran en la BD"  
+      produces:
+      - "application/json"      
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "AtrIbutos"
+        required: true
+        schema:
+          $ref: "#/definitions/Attributes"  
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /list:
+    get:
+      tags:
+      - "Proceso CRUD"      
+      description: "Listara los registros almacenados de la BD."        
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string" 
+  /get_data/{id}:
+    get:
+      tags:
+      - "Proceso CRUD"      
+      description: "Hace una consulta al registro."  
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Colocar el Id del registro."
+        required: true
+        type: "string"
+        maximum: 100.0
+        minimum: 1.0
+        format: "uuid"      
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"        
+  /update/{id}:
+    put:
+      tags:
+      - "Proceso CRUD"       
+      description: "Actualiza un registro."  
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Colocar ID del registro."
+        required: true
+        type: "string"
+        maximum: 100.0
+        minimum: 1.0
+        format: "uuid"      
+      - in: "body"
+        name: "body"
+        description: "Ingresar los datos para cada atributo."
+        required: true
+        schema:
+          $ref: "#/definitions/Attributes"        
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"              
+  /delete/{id}:
+    delete:
+      tags:
+      - "Proceso CRUD"    
+      description: "Elimina un registro."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Colocar ID del registro."
+        required: true
+        type: "string"
+        maximum: 100.0
+        minimum: 1.0
+        format: "uuid"      
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+              
+definitions:
+  Attributes:
+    type: "object"
+    properties:
+      titulo:
+        type: "string"
+        format: "int64"
+      episodio:
+        type: "integer"
+        format: "int32"
+      descripcion:
+        type: "string"
+        format: "int64"        
+      director:
+        type: "string"
+        format: "int64"      
+      productor:
+        type: "string"
+        format: "int64"           
+      fecha_lanzamiento:
+        type: "string"
+        format: "date"
+    xml:
+      name: "Order"  
