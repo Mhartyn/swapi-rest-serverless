@@ -8,8 +8,8 @@ Se divide en 2 procesos:
 
  Se usara el Endpoint de prueba https://swapi.py4e.com/api/films.
 
- GET - https://ia34968003.execute-api.us-east-2.amazonaws.com/dev/integrate_swapi
- - Mostrara un listado de películas con los atributos transformados al español.
+ - GET - https://ia34968003.execute-api.us-east-2.amazonaws.com/dev/integrate_swapi
+    - Mostrara un listado de películas con los atributos transformados al español.
 
 ## **Proceso CRUD (Create, Read, Update, Delete).**
 
@@ -27,8 +27,8 @@ Documentación mas detallada en el archivo **documentation.yaml**
 ## Pruebas Unitarias:
 
 - Las pruebas unitarias son en local, se enfocan en solo 2 **funciones** serverless:
-    - GET - getApi
-    - GET - listData
+    - GET - /integrate_swapi
+    - GET - /listData
 - Ejecutar el comando para hacer la prueba unitaria.
 ```shell
 sls invoke test

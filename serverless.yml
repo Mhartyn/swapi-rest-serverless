@@ -26,6 +26,11 @@ provider:
 
 plugins:  
   - serverless-offline
+  - serverless-mocha-plugin
+
+custom:
+  serverless-mocha-plugin:
+    testTemplate: test/endpoints.js    
   
 resources:
   Resources:

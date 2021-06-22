@@ -8,9 +8,7 @@ module.exports.integrateSwapi = (event, context, callback) => {
     .then((response) => {
 
       var data = response.data.results;
-      let lista = [];
-
-      console.log(data);
+      let lista = [];      
 
       for (var atr in data) {
 
