@@ -8,8 +8,14 @@ Se divide en 2 procesos:
 
  Se usara el Endpoint de prueba https://swapi.py4e.com/api/films.
 
- - GET - https://ia34968003.execute-api.us-east-2.amazonaws.com/dev/integrate_swapi
-    - Mostrara un listado de películas con los atributos transformados al español.
+GET - https://ia34968003.execute-api.us-east-2.amazonaws.com/dev/integrate_swapi
+
+Mostrara un listado de películas con los atributos transformados al español.
+```shell
+curl -X 'GET' \
+'https://ia34968003.execute-api.us-east-2.amazonaws.com/dev/integrate_swapi' \
+-H 'accept: application/json'
+```    
 
 ## **Proceso CRUD (Create, Read, Update, Delete).**
 
